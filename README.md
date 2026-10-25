@@ -100,6 +100,7 @@ app.py (Python standard library server)
 
 更完整的设计说明见 [ARCHITECTURE.md](ARCHITECTURE.md)，API 合同见 [openapi.yaml](openapi.yaml)，参赛材料见 [docs/competition-submission.md](docs/competition-submission.md)。
 开发与回归检查结果见 [docs/self-check.md](docs/self-check.md)。
+提交用作品介绍文档见 [docs/OpenFix-参赛作品介绍.pdf](docs/OpenFix-参赛作品介绍.pdf)（源文件 [docs/submission.html](docs/submission.html)），演示视频录制清单见 [docs/video-recording-kit.md](docs/video-recording-kit.md)。
 
 ## 目录
 

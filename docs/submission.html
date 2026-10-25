@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>OpenFix 参赛作品介绍</title>
+<style>
+  @page {
+    size: A4;
+    margin: 19mm 17mm 17mm 17mm;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  @media screen {
+    html { background: #e9edef; padding: 10mm 0; }
+    body {
+      width: 210mm;
+      margin: 0 auto;
+      padding: 19mm 17mm 17mm 17mm;
+      background: #fff;
+      box-shadow: 0 2px 18px rgba(16, 42, 51, .16);
+    }
+  }
+
+  body {
+    margin: 0;
+    font-family: "Microsoft YaHei", "PingFang SC", "Hiragino Sans GB", sans-serif;
+    font-size: 10.2pt;
+    line-height: 1.78;
+    color: #1f2933;
+    background: #fff;
+  }
+
+  h1, h2, h3, h4 { font-weight: 700; color: #0b3d4a; margin: 0; }
+
+  /* ---------- 封面 ---------- */
+  .cover {
+    height: 253mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    page-break-after: always;
+  }
+
+  .cover-top { padding-top: 6mm; }
+
+  .event {
+    font-size: 9.5pt;
+    letter-spacing: .18em;
+    color: #6b7c85;
+    text-transform: uppercase;
+  }
+
+  .track-tag {
+    display: inline-block;
+    margin-top: 9mm;
+    padding: 3.2mm 5mm;
+    background: #0b5563;
+    color: #fff;
+    font-size: 9.5pt;
+    letter-spacing: .1em;
+    border-radius: 2px;
+  }
+
+  .cover h1 {
+    font-size: 46pt;
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    margin: 8mm 0 0;
+    color: #0b3d4a;
+  }
+
+  .cover h1 .dot { color: #c2410c; }
+
+  .cover-sub {
+    font-size: 17pt;
+    font-weight: 600;
+    color: #254b57;
+    margin-top: 5mm;
+    letter-spacing: .04em;
+  }
+
+  .cover-claim {
+    margin-top: 10mm;
+    padding-left: 6mm;
+    border-left: 3px solid #c2410c;
+    font-size: 11pt;
+    line-height: 1.9;
+    color: #3b4a52;
+    max-width: 132mm;
+  }
+
+  .cover-claim strong { color: #0b3d4a; }
+
+  .cover-metrics {
+    display: flex;
+    gap: 0;
+    border-top: 1px solid #d6dee2;
+    border-bottom: 1px solid #d6dee2;
+    margin-bottom: 8mm;
+  }
+
+  .metric {
+    flex: 1;
+    padding: 5mm 0 5mm 0;
+    text-align: center;
+    border-right: 1px solid #e3e9ec;
+  }
+  .metric:last-child { border-right: none; }
+  .metric .num { font-size: 19pt; font-weight: 700; color: #0b5563; line-height: 1.1; }
+  .metric .lbl { font-size: 8.4pt; color: #6b7c85; margin-top: 1.5mm; letter-spacing: .04em; }
+
+  .cover-meta {
+    display: grid;
+    grid-template-columns: 26mm 1fr 26mm 1fr;
+    gap: 2.2mm 4mm;
+    font-size: 9pt;
+    padding-bottom: 2mm;
+  }
+  .cover-meta dt { color: #6b7c85; }
+  .cover-meta dd { margin: 0; color: #1f2933; font-weight: 600; }
+
+  /* ---------- 正文 ---------- */
+  .doc { page-break-before: always; }
+
+  h2 {
+    font-size: 16.5pt;
+    margin: 0 0 4mm;
+    padding-bottom: 2.5mm;
+    border-bottom: 2px solid #0b5563;
+  }
+
+  h2 .no {
+    color: #c2410c;
+    font-size: 12pt;
+    letter-spacing: .06em;
+    margin-right: 3mm;
+    vertical-align: 2px;
+  }
+
+  h2 + p, h2 + .lead { margin-top: 4mm; }
+
+  h3 {
+    font-size: 11.6pt;
+    margin: 7mm 0 2.5mm;
+    color: #0b5563;
+  }
+
+  h3::before {
+    content: "";
+    display: inline-block;
+    width: 2.6mm;
+    height: 2.6mm;
+    background: #c2410c;
+    margin-right: 2.6mm;
+    vertical-align: 1.2px;
+  }
+
+  h4 { font-size: 10.4pt; margin: 4mm 0 1.5mm; color: #254b57; }
+
+  p { margin: 0 0 3mm; text-align: justify; }
+
+  .lead {
+    font-size: 10.6pt;
+    color: #3b4a52;
+  }
+
+  ul, ol { margin: 0 0 3mm; padding-left: 5.5mm; }
+  li { margin-bottom: 1.4mm; }
+
+  strong { color: #0b3d4a; }
+  em { font-style: normal; background: linear-gradient(transparent 62%, #fde3ce 62%); padding: 0 1px; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 9.1pt;
+    margin: 3mm 0 4mm;
+    break-inside: avoid;
+  }
+
+  th {
+    background: #eef4f5;
+    color: #0b3d4a;
+    font-weight: 700;
+    text-align: left;
+    padding: 2.2mm 3mm;
+    border-bottom: 1.2px solid #0b5563;
+  }
+
+  td {
+    padding: 2.2mm 3mm;
+    border-bottom: 1px solid #e3e9ec;
+    vertical-align: top;
+  }
+
+  tr:last-child td { border-bottom: 1px solid #d6dee2; }
+
+  td.k { color: #0b5563; font-weight: 600; white-space: nowrap; }
+
+  .callout {
+    background: #f6f9fa;
+    border-left: 3px solid #0b5563;
+    padding: 4mm 5mm;
+    margin: 4mm 0;
+    break-inside: avoid;
+  }
+  .callout.warn { background: #fdf6f0; border-left-color: #c2410c; }
+  .callout .t {
+    font-weight: 700;
+    color: #0b3d4a;
+    font-size: 9.6pt;
+    letter-spacing: .04em;
+    margin-bottom: 1.5mm;
+  }
+  .callout p:last-child, .callout ul:last-child { margin-bottom: 0; }
+  .callout p { font-size: 9.6pt; }
+
+  code {
+    font-family: "Cascadia Mono", Consolas, monospace;
+    font-size: 8.8pt;
+    background: #eef2f4;
+    padding: 0.4mm 1.2mm;
+    border-radius: 2px;
+  }
+
+  pre {
+    font-family: "Cascadia Mono", Consolas, monospace;
+    font-size: 8.6pt;
+    line-height: 1.6;
+    background: #f4f7f8;
+    border: 1px solid #e3e9ec;
+    padding: 3.5mm 4mm;
+    margin: 3mm 0 4mm;
+    overflow: hidden;
+    break-inside: avoid;
+  }
+  pre code { background: none; padding: 0; font-size: inherit; }
+
+  /* ---------- 架构图 ---------- */
+  .flow { margin: 4mm 0 5mm; break-inside: avoid; }
+
+  .flow-row {
+    display: flex;
+    align-items: stretch;
+    gap: 3mm;
+    margin-bottom: 2.5mm;
+  }
+
+  .box {
+    flex: 1;
+    border: 1px solid #cfdbe0;
+    border-radius: 2px;
+    padding: 3mm 3.5mm;
+    background: #fbfdfd;
+  }
+  .box .bt { font-size: 9.4pt; font-weight: 700; color: #0b3d4a; }
+  .box .bd { font-size: 8.4pt; color: #5b6b73; line-height: 1.55; margin-top: 1mm; }
+
+  .box.accent { background: #0b5563; border-color: #0b5563; }
+  .box.accent .bt { color: #fff; }
+  .box.accent .bd { color: #dcefF3; }
+
+  .box.gate { background: #fdf6f0; border-color: #e8b48f; }
+  .box.gate .bt { color: #8a3a10; }
+
+  .flow-arrow {
+    text-align: center;
+    color: #9aabb3;
+    font-size: 9pt;
+    line-height: 1;
+    margin: -1mm 0 1mm;
+  }
+
+  .flow-label {
+    font-size: 8.2pt;
+    color: #6b7c85;
+    letter-spacing: .1em;
+    margin-bottom: 1.8mm;
+  }
+
+  /* ---------- 场景卡 ---------- */
+  .scene {
+    border: 1px solid #dde5e8;
+    border-top: 2.5px solid #0b5563;
+    padding: 4mm 5mm;
+    margin: 4mm 0;
+    break-inside: avoid;
+  }
+  .scene.hot { border-top-color: #c2410c; }
+  .scene .st {
+    font-size: 9pt;
+    color: #6b7c85;
+    letter-spacing: .12em;
+    margin-bottom: 1mm;
+  }
+  .scene .sn { font-size: 11pt; font-weight: 700; color: #0b3d4a; margin-bottom: 2.5mm; }
+  .scene .q {
+    font-size: 9.6pt;
+    color: #1f2933;
+    background: #f4f7f8;
+    border-left: 2.5px solid #0b5563;
+    padding: 2.2mm 3mm;
+    margin-bottom: 2.5mm;
+    font-family: "Cascadia Mono", Consolas, monospace;
+  }
+  .scene.hot .q { border-left-color: #c2410c; }
+  .scene p { font-size: 9.5pt; margin-bottom: 1.8mm; }
+
+  .kv { display: flex; gap: 3mm; font-size: 9.5pt; margin-bottom: 1.5mm; }
+  .kv .kk { flex: 0 0 22mm; color: #6b7c85; }
+  .kv .vv { flex: 1; }
+
+  /* ---------- 页尾 ---------- */
+  .signoff {
+    margin-top: 8mm;
+    padding-top: 4mm;
+    border-top: 1px solid #d6dee2;
+    font-size: 9pt;
+    color: #6b7c85;
+  }
+
+  .pagebreak { page-break-before: always; }
+  .nobreak { break-inside: avoid; }
+</style>
+</head>
+<body>
+
+<!-- ============ 封面 ============ -->
+<section class="cover">
+  <div class="cover-top">
+    <div class="event">第四届开放原子大赛 · 2026 开源行业解决方案创新赛</div>
+    <div class="track-tag">赛道一 · 开源基础软件与解决方案</div>
+    <h1>OpenFix<span class="dot">.</span></h1>
+    <div class="cover-sub">工业设备检修证据链智能体</div>
+    <div class="cover-claim">
+      把控制面板报警、设备手册、历史工单和安全规程组织成一条<strong>可追溯的诊断证据链</strong>。
+      系统不会把语言模型的描述当成执行许可：<strong>没有证据不诊断，没有审批不执行。</strong>
+    </div>
+  </div>
+
+  <div>
+    <div class="cover-metrics">
+      <div class="metric"><div class="num">6</div><div class="lbl">演示设备</div></div>
+      <div class="metric"><div class="num">8</div><div class="lbl">SOP 与规程</div></div>
+      <div class="metric"><div class="num">7</div><div class="lbl">历史工单</div></div>
+      <div class="metric"><div class="num">12</div><div class="lbl">评测任务</div></div>
+      <div class="metric"><div class="num">21</div><div class="lbl">单元测试</div></div>
+      <div class="metric"><div class="num">0</div><div class="lbl">第三方依赖</div></div>
+    </div>
+
+    <dl class="cover-meta">
+      <dt>项目类型</dt><dd>开源行业应用平台</dd>
+      <dt>开源协议</dt><dd>Apache License 2.0</dd>
+      <dt>技术栈</dt><dd>Python 3.10+ 标准库 · SQLite</dd>
+      <dt>部署形态</dt><dd>本地 / 边缘服务器 / Docker</dd>
+      <dt>代码仓库</dt><dd>（提交前填写仓库地址）</dd>
+      <dt>演示视频</dt><dd>（提交前填写视频地址）</dd>
+      <dt>文档版本</dt><dd>v1.0 · 2026 年 10 月</dd>
+      <dt>适用边界</dt><dd>合成演示数据，非生产维修依据</dd>
+    </dl>
+  </div>
+</section>
+
+<!-- ============ 正文 ============ -->
+<div class="doc">
+
+<h2 id="s01"><span class="no">01</span>项目背景</h2>
+
+<p class="lead">OpenFix 关注的是设备报警发生之后的“半小时”。这半小时里，现场人员必须完成三件事：判断报警指向什么、确认哪些处置是安全的、留下可复核的记录。而支撑这三件事的知识，通常并不在同一个地方。</p>
+
+<h3>三个真实缺口</h3>
+
+<table>
+  <thead>
+    <tr><th style="width:26%">知识载体</th><th style="width:34%">现状</th><th>后果</th></tr>
+  </thead>
+  <tbody>
+    <tr><td class="k">设备手册与 SOP</td><td>PDF 动辄数百页，报警码分散在不同章节</td><td>定位慢，现场往往直接跳过，凭经验处置</td></tr>
+    <tr><td class="k">老师傅经验</td><td>存在于个人记忆中，未结构化沉淀</td><td>人员流动即知识流失，同类故障反复排查</td></tr>
+    <tr><td class="k">历史工单</td><td>Excel 或纸质记录，字段不统一、无法检索</td><td>相似案例无法复用，重复停机与不必要的备件更换</td></tr>
+    <tr><td class="k">通用 AI 助手</td><td>可以流畅生成维修步骤，但无法给出可核验的来源</td><td>在高温、带压、带电场景中，编造的步骤本身即风险</td></tr>
+  </tbody>
+</table>
+
+<p>中小制造企业普遍缺少专职知识工程团队，也没有预算部署复杂的 RAG 基础设施。因此问题不在于“有没有 AI”，而在于<strong>能否用可部署、可验证的方式，把分散的维修知识变成可追溯的判断依据</strong>。</p>
+
+<h3>目标用户</h3>
+<ul>
+  <li>中小制造企业的设备部与维修班组——报警后的第一响应人。</li>
+  <li>动力站、加工线、包装线等高关键设备的值班维护人员。</li>
+  <li>为制造企业提供设备运维服务的系统集成商——需要可私有化交付的工具。</li>
+  <li>建设行业设备知识库的开源社区与科研机构。</li>
+</ul>
+
+<div class="callout">
+  <div class="t">项目不做什么</div>
+  <p>OpenFix 不替代维修人员判断，不输出“可直接执行”的指令，不承诺诊断准确率。它只做一件事：把证据整理到位，把风险拦住，把决定权和责任留在授权人手里。</p>
+</div>
+
+<h2 id="s02"><span class="no">02</span>解决方案与应用场景</h2>
+
+<p class="lead">OpenFix 是一个本地优先的检修决策工作台。现场人员用一句自然语言描述现象，系统返回一个可核验的证据包，而不是一段无法追溯的建议。</p>
+
+<h3>工作流</h3>
+<ol>
+  <li>现场人员输入设备编号、报警代码和异常现象（中英混合、口语化均可）。</li>
+  <li>系统识别设备与报警码，联合检索 SOP、安全规程与历史工单。</li>
+  <li>结构化约束确保报警码精确匹配，相近报警码的工单不进入同一证据包。</li>
+  <li>确定性安全规则独立评估风险，命中即前置安全处置并阻断危险动作。</li>
+  <li>输出故障假设、逐条证据来源、信息缺口与建议检查步骤。</li>
+  <li>普通诊断可转为待审批工单，批准或驳回均写入 SQLite 审计轨迹。</li>
+</ol>
+
+<h3>三个典型场景</h3>
+
+<div class="scene">
+  <div class="st">SCENE 01 · 诊断取证</div>
+  <div class="sn">空压机排气温度高</div>
+  <div class="q">AC-01 空压机报 E201，排气温度高，复位后很快又停机</div>
+  <div class="kv"><div class="kk">系统行为</div><div class="vv">识别设备 AC-01，锁定报警码 E201，命中对应 SOP 与“冷却器堵塞”历史工单，输出证据链与缺失信息。</div></div>
+  <div class="kv"><div class="kk">设计要点</div><div class="vv">同设备的 E203 工单不会作为等价证据混入；证据不足时明确列出需要补充的量测数据。</div></div>
+</div>
+
+<div class="scene hot">
+  <div class="st">SCENE 02 · 安全拦截</div>
+  <div class="sn">带压拆管请求</div>
+  <div class="q">空压机压力还在，要求直接拆油管检查</div>
+  <div class="kv"><div class="kk">系统行为</div><div class="vv">安全状态升级为“需要安全复核”，强制前置引用通用能量隔离规程，只输出停机、泄压、零能量验证步骤，并将“带压拆管”列为禁止动作。</div></div>
+  <div class="kv"><div class="kk">设计要点</div><div class="vv">该结论由确定性规则产生，不依赖检索分数，也不参与语言生成——即使用户明确要求，系统也不会顺从。</div></div>
+</div>
+
+<div class="scene">
+  <div class="st">SCENE 03 · 主动拒答</div>
+  <div class="sn">问题超出维护领域</div>
+  <div class="q">今天产量怎么样</div>
+  <div class="kv"><div class="kk">系统行为</div><div class="vv">放弃推断，返回需要补充设备、报警与现场状态的提示。</div></div>
+  <div class="kv"><div class="kk">设计要点</div><div class="vv">在工业场景里，“不确定却给出步骤”比“明确拒答”危险得多。拒答是功能，不是失败。</div></div>
+</div>
+
+<h3>与通用 AI 助手的边界</h3>
+
+<table>
+  <thead><tr><th style="width:30%">维度</th><th style="width:35%">通用 AI 助手</th><th>OpenFix</th></tr></thead>
+  <tbody>
+    <tr><td class="k">输出形态</td><td>一段自然语言建议</td><td>结构化证据包：假设 + 来源 + 缺口 + 步骤</td></tr>
+    <tr><td class="k">可追溯性</td><td>通常无法逐条对应文档</td><td>每条结论附 SOP / 工单编号与文档定位</td></tr>
+    <tr><td class="k">高危场景</td><td>可能顺着用户要求生成步骤</td><td>确定性规则阻断，只给安全处置</td></tr>
+    <tr><td class="k">证据不足</td><td>倾向于补全答案</td><td>明确拒答并要求补充信息</td></tr>
+    <tr><td class="k">执行权限</td><td>建议与执行界限模糊</td><td>证据与执行分离，需授权人审批</td></tr>
+    <tr><td class="k">部署条件</td><td>依赖云 API 与网络</td><td>断网可用，标准库 + SQLite</td></tr>
+  </tbody>
+</table>
+
+<h2 id="s03" class="pagebreak"><span class="no">03</span>技术架构</h2>
+
+<p class="lead">整条链路是确定性的、可单测的：检索负责“找出证据”，规则负责“判定风险”，两者互不干扰，最后由人工决定是否执行。</p>
+
+<div class="flow">
+  <div class="flow-label">现场输入</div>
+  <div class="flow-row">
+    <div class="box accent">
+      <div class="bt">自然语言描述</div>
+      <div class="bd">设备编号 · 报警码 · 故障现象（中英混合）</div>
+    </div>
+  </div>
+  <div class="flow-arrow">▼</div>
+
+  <div class="flow-label">取证</div>
+  <div class="flow-row">
+    <div class="box"><div class="bt">中英混合分词</div><div class="bd">术语与编号统一 token 化</div></div>
+    <div class="box"><div class="bt">双 BM25 索引</div><div class="bd">SOP / 安全规程 · 历史工单</div></div>
+    <div class="box"><div class="bt">结构化重排</div><div class="bd">报警码精确匹配 · 资产类型约束</div></div>
+  </div>
+  <div class="flow-arrow">▼</div>
+
+  <div class="flow-label">判定</div>
+  <div class="flow-row">
+    <div class="box gate"><div class="bt">确定性安全门槛</div><div class="bd">6 类风险规则，独立于检索分数与语言生成</div></div>
+  </div>
+  <div class="flow-arrow">▼</div>
+
+  <div class="flow-label">交付</div>
+  <div class="flow-row">
+    <div class="box"><div class="bt">证据包</div><div class="bd">假设 · 证据链 · 缺失信息 · 建议步骤</div></div>
+    <div class="box"><div class="bt">待审批工单</div><div class="bd">创建 → 待审批 → 批准 / 驳回</div></div>
+    <div class="box"><div class="bt">审计轨迹</div><div class="bd">SQLite 记录谁在何时做了什么</div></div>
+  </div>
+</div>
+
+<h3>模块划分</h3>
+
+<table>
+  <thead><tr><th style="width:24%">模块</th><th>职责</th></tr></thead>
+  <tbody>
+    <tr><td class="k">app.py</td><td>HTTP API 与静态资源服务，标准库实现，含请求体大小、路径穿越、方法约束等边界防护</td></tr>
+    <tr><td class="k">openfix/engine.py</td><td>检索、设备与报警码识别、证据链组装、诊断结果生成</td></tr>
+    <tr><td class="k">openfix/safety.py</td><td>6 类确定性安全规则（烟火、电气、压力、旋转、高温、异常运动），输出禁止动作与安全处置</td></tr>
+    <tr><td class="k">openfix/store.py</td><td>SQLite 工单状态机与审计日志，审批采用条件更新避免并发重复审批</td></tr>
+    <tr><td class="k">openfix/evaluate.py</td><td>可复现评测：证据召回、案例召回、拒答准确率、安全门命中率</td></tr>
+    <tr><td class="k">openfix/text.py</td><td>中文分词与 BM25 实现，无外部依赖</td></tr>
+  </tbody>
+</table>
+
+<h3>三个关键工程决策</h3>
+
+<h4>1. 用结构化约束弥补检索的不可靠</h4>
+<p>纯 BM25 在小语料上表现尚可，但会把“同一台设备的其他报警码”当成强相关证据。OpenFix 在排序前先做一次硬约束：只要查询中出现已知报警码，就只保留同码的 SOP 与同码历史案例，再做相关性排序。这条约束带来的是<strong>可解释的确定性</strong>——解释“为什么这条证据进来了”比解释“为什么它的分数是 0.47”容易得多。</p>
+
+<h4>2. 把安全政策从检索里剥离出来</h4>
+<p>安全判定不读取检索分数，也不交给语言模型。它是独立的一组规则函数，输入只有现场描述，输出是风险类别、禁止动作与安全处置。这样做的直接好处是：<strong>安全门槛可以被单元测试穷举验证</strong>，不会因为知识库内容变化而漂移。</p>
+
+<h4>3. 状态机 + 条件更新</h4>
+<p>工单审批采用 <code>UPDATE ... WHERE status = 'pending_approval'</code> 并检查受影响行数，从数据库层杜绝两位审批人同时通过同一张工单。</p>
+
+<h3>部署形态</h3>
+
+<table>
+  <thead><tr><th style="width:26%">形态</th><th style="width:34%">使用方式</th><th>适用场景</th></tr></thead>
+  <tbody>
+    <tr><td class="k">Windows 便携版</td><td>双击 <code>start.cmd</code>，浏览器打开 <code>127.0.0.1:8765</code></td><td>无网络、无 Python 环境的车间工控机</td></tr>
+    <tr><td class="k">已装 Python</td><td><code>python app.py</code>（3.10+）</td><td>技术人员的开发与验证环境</td></tr>
+    <tr><td class="k">Docker</td><td><code>docker run -p 8765:8765 openfix</code></td><td>边缘服务器、内网私有化部署</td></tr>
+  </tbody>
+</table>
+
+<p>配置通过环境变量完成：<code>OPENFIX_DB_PATH</code> 指定审计数据库位置，<code>OPENFIX_QUIET</code> 控制日志，启动脚本支持 <code>-Port</code> 更换端口。公开 API 以 <code>openapi.yaml</code> 描述，便于与被集成方对接。</p>
+
+<h2 id="s04" class="pagebreak"><span class="no">04</span>创新点</h2>
+
+<p class="lead">本项目不追求“更强的模型”，而是把工业维护场景里真正稀缺的东西工程化：可追溯、可拦截、可测试。</p>
+
+<h3>1. 证据与执行分离</h3>
+<p>系统只生成“诊断证据包”，不生成执行许可。执行需要授权人批准，高危条件下只输出安全处置与补充信息要求。这一条把 <em>AI 的输出</em> 与 <em>人的决定</em> 在架构上隔开，而不是靠提示词约束。</p>
+<p><strong>与已有方案的差异：</strong>多数“AI 维修助手”把建议直接当作答案交付，责任边界模糊；本项目在数据模型里就把「证据」与「工单执行」拆成两个状态。</p>
+
+<h3>2. 报警码优先的结构化检索</h3>
+<p>中文 BM25 解决术语与口语化表达的匹配，报警码与资产类型约束解决准确性。E201 的诊断不会把同设备的 E203 工单当作等价证据，也不会把 E2010 误判为 E201。</p>
+<p><strong>可验证证据：</strong>评测集专门设置“同设备不同报警码干扰”用例，证据召回率 100%；单元测试覆盖报警码边界与设备别名歧义。</p>
+
+<h3>3. 可测试的确定性安全政策</h3>
+<p>6 类风险规则以代码实现，输入现场描述，输出风险类别与禁止动作。规则不读检索分数，不依赖模型，因此可以被穷举测试，也可以在评审时逐条复核。</p>
+<p><strong>可验证证据：</strong>安全门命中率 100%；“拆开正在运行的风机护罩”这类非固定短语表达，通过“动作 + 部件 + 运行状态”的复合条件命中旋转设备规则。</p>
+
+<h3>4. 主动拒答</h3>
+<p>输入为空、与维护无关、或证据不足以支撑结论时，系统明确拒绝推断，并说明缺什么。工业场景下，一个“不知道”比一个错误答案有价值。</p>
+<p><strong>可验证证据：</strong>拒答准确率 100%，覆盖空输入、纯空白、跨领域提问三类用例。</p>
+
+<h3>5. 本地优先、零第三方依赖</h3>
+<p>后端只使用 Python 标准库，检索与分词自行实现，持久化用 SQLite，无云 API、无向量数据库、无外部服务。这意味着：可以在断网的工控机上运行，可以被完整审计，也不会因为某个上游服务的价格或策略变化而失效。</p>
+<p><strong>与已有方案的差异：</strong>主流 RAG 方案要求向量库与嵌入模型，部署门槛与数据合规成本都不适合中小制造企业；本项目用“结构化约束 + 轻量检索”换取了可部署性。</p>
+
+<h2 id="s05"><span class="no">05</span>验证结果</h2>
+
+<p class="lead">以下结果全部由项目内脚本一键复现，用于验证工程实现与测试覆盖，<strong>不代表真实工厂环境的生产准确率</strong>。</p>
+
+<table>
+  <thead><tr><th style="width:32%">指标</th><th style="width:18%">结果</th><th>说明</th></tr></thead>
+  <tbody>
+    <tr><td class="k">后端单元测试</td><td>21 项通过</td><td>覆盖诊断、拒答、设备识别、报警码边界、安全规则、工单状态机、SQL 注入</td></tr>
+    <tr><td class="k">知识证据召回</td><td>100%</td><td>12 条任务中应命中的 SOP 是否全部进入证据包</td></tr>
+    <tr><td class="k">历史案例召回</td><td>100%</td><td>应命中的历史工单是否被正确引用</td></tr>
+    <tr><td class="k">拒答准确率</td><td>100%</td><td>应拒答的用例是否拒答，不应拒答的是否正常作答</td></tr>
+    <tr><td class="k">安全门命中率</td><td>100%</td><td>高危用例是否被确定性规则拦截</td></tr>
+    <tr><td class="k">API 边界</td><td>全部符合预期</td><td>空体 400、缺字段 422、非法 JSON 400、超 16KB 413、目录穿越 403、未知 API 404</td></tr>
+    <tr><td class="k">响应式布局</td><td>通过</td><td>1440px 桌面与 390px 移动端全流程无横向溢出，控制台零错误</td></tr>
+  </tbody>
+</table>
+
+<p>复现方式：</p>
+<pre><code>python run_tests.py          # 21 项单元测试
+python eval/run_eval.py      # 12 条评测任务，输出 JSON 指标</code></pre>
+
+<div class="callout warn">
+  <div class="t">关于这组 100%</div>
+  <p>评测集与知识库均为项目自带的<strong>合成数据</strong>，12 条任务由项目作者设计，用于锁定回归行为。它的意义是“改动不会悄悄破坏已有能力”，不是“系统在真实工厂里准确率 100%”。真实效果必须通过试点测量，见第 07 节。</p>
+</div>
+
+<h2 id="s06"><span class="no">06</span>开源治理</h2>
+
+<table>
+  <thead><tr><th style="width:26%">项目</th><th>当前状态</th></tr></thead>
+  <tbody>
+    <tr><td class="k">许可证</td><td>Apache License 2.0，含专利授权条款，适合企业集成</td></tr>
+    <tr><td class="k">第三方依赖</td><td>运行时零第三方 Python 依赖；随附便携运行时为 Python 3.12.10，其 PSF 许可证在 <code>NOTICE</code> 与 <code>runtime/python312/LICENSE.txt</code> 中明确标注</td></tr>
+    <tr><td class="k">治理文档</td><td><code>GOVERNANCE.md</code>（决策与角色）、<code>CONTRIBUTING.md</code>（贡献流程）、<code>SECURITY.md</code>（漏洞披露）</td></tr>
+    <tr><td class="k">数据与代码分离</td><td>设备台账、SOP、历史工单均为独立 JSON，可整体替换为企业自有知识库而不改代码</td></tr>
+    <tr><td class="k">可复现性</td><td>测试与评测脚本随仓库提供，一条命令复现全部指标</td></tr>
+    <tr><td class="k">接口契约</td><td><code>openapi.yaml</code> 描述公开 API，便于第三方对接与二次开发</td></tr>
+    <tr><td class="k">安全基线</td><td>SQL 全参数化、前端动态文本统一转义、请求体大小与路径穿越防护</td></tr>
+  </tbody>
+</table>
+
+<h3>供应链风险控制</h3>
+<p>“零第三方依赖”不只是部署便利，也是安全策略：没有 npm / PyPI 依赖树，就没有传递依赖漏洞与许可证污染。唯一的二进制是 Python 运行时本身，来源与许可证可核验。</p>
+
+<h2 id="s07"><span class="no">07</span>长期发展</h2>
+
+<h3>路线图</h3>
+<table>
+  <thead><tr><th style="width:8%">阶段</th><th style="width:30%">方向</th><th>内容</th></tr></thead>
+  <tbody>
+    <tr><td class="k">近期</td><td>CMMS / EAM 对接</td><td>接入企业工单与设备主数据，让审批结果回到既有系统，形成知识回流</td></tr>
+    <tr><td class="k">近期</td><td>文档解析与版本治理</td><td>PDF 解析、图文混合检索、SOP 版本与生效期管理</td></tr>
+    <tr><td class="k">中期</td><td>本地开源模型接入</td><td>只用于解释已取证结果，不允许生成新动作；接入前评估提示注入与越权检索</td></tr>
+    <tr><td class="k">中期</td><td>传感器数据</td><td>测量趋势分析与事件时间窗，把“排气温度高”变成可量化的判断依据</td></tr>
+    <tr><td class="k">长期</td><td>规模化检索</td><td>文档切分、权限过滤、向量混合检索与增量索引</td></tr>
+  </tbody>
+</table>
+
+<h3>试点计划（4 周）</h3>
+<ol>
+  <li>脱敏导入 100—300 份设备手册与历史工单。</li>
+  <li>由维修主管审核 100 条真实故障描述，作为评测基线。</li>
+  <li>对比接入前后的首轮定位时间、重复停机率与工单返工率。</li>
+  <li>记录安全规则的误报、漏报与人工纠正原因。</li>
+  <li>将已验证工单回灌知识库，保留版本与审核人信息。</li>
+</ol>
+
+<p>试点的价值不在于再跑一次 100%，而在于拿到第一组真实数据：首轮定位时间是否缩短、返工率是否下降、安全规则在真实描述下的误报率是多少。这些数字决定项目下一步往哪走。</p>
+
+<h2 id="s08"><span class="no">08</span>风险与边界</h2>
+
+<table>
+  <thead><tr><th style="width:28%">风险</th><th style="width:36%">现状</th><th>应对</th></tr></thead>
+  <tbody>
+    <tr><td class="k">数据为合成数据</td><td>未使用真实工厂数据，未做生产验证</td><td>以 4 周试点获取真实基线，公开测量口径</td></tr>
+    <tr><td class="k">无真实身份认证</td><td>演示版审批人仅为姓名字段</td><td>生产部署必须接入企业 SSO 与服务端细粒度授权</td></tr>
+    <tr><td class="k">安全规则覆盖有限</td><td>6 类关键词与复合条件规则，覆盖演示场景</td><td>结合企业危险源清单、作业许可制度与专家评审扩充</td></tr>
+    <tr><td class="k">小规模检索</td><td>BM25 适合当前离线语料规模</td><td>大规模知识库需切分、权限过滤与向量混合检索</td></tr>
+    <tr><td class="k">大模型接入风险</td><td>当前版本未接入生成式模型</td><td>接入后需评估提示注入、越权检索与输出越界</td></tr>
+    <tr><td class="k">人工审批≠安全认证</td><td>系统记录“谁批准了什么”</td><td>不能替代现场 LOTO、工作票与设备隔离程序</td></tr>
+  </tbody>
+</table>
+
+<div class="callout">
+  <div class="t">设计原则</div>
+  <p><strong>没有证据不诊断，没有审批不执行。</strong>这条原则写在代码里，而不只是写在文档里：证据不足时引擎返回拒答，未审批的工单不能进入执行状态，高危场景下安全处置优先于用户请求。</p>
+</div>
+
+<h2 id="s09"><span class="no">09</span>附录</h2>
+
+<h3>A. 快速启动</h3>
+<pre><code># Windows：双击 start.cmd，或
+.\start.ps1
+
+# 已安装 Python 3.10+
+python app.py
+
+# Docker
+docker build -t openfix .
+docker run --rm -p 8765:8765 openfix
+
+# 浏览器访问
+http://127.0.0.1:8765</code></pre>
+
+<h3>B. 目录结构</h3>
+<pre><code>openfix/
+├── app.py                  HTTP API 与静态资源服务
+├── openfix/
+│   ├── engine.py           检索、诊断、证据链
+│   ├── safety.py           确定性安全规则
+│   ├── store.py            SQLite 工单与审计
+│   ├── evaluate.py         可复现评测
+│   └── text.py             中文分词与 BM25
+├── data/                   合成设备台账、SOP、案例、评测集
+├── web/                    响应式前端
+├── tests/                  单元测试
+├── runtime/python312/      Windows 便携运行时
+├── docs/                   参赛与使用说明
+└── eval/run_eval.py        评测入口</code></pre>
+
+<h3>C. 相关文档</h3>
+<ul>
+  <li><code>README.md</code>——安装、运行与演示路径</li>
+  <li><code>ARCHITECTURE.md</code>——设计说明与关键取舍</li>
+  <li><code>openapi.yaml</code>——API 契约</li>
+  <li><code>docs/self-check.md</code>——自检报告（含 10 项已修复问题与残留风险）</li>
+  <li><code>docs/demo-script.md</code>——五分钟演示脚本</li>
+</ul>
+
+<div class="signoff">
+  <p>OpenFix 的目标不是让 AI 取代维修人员，而是让维修人员的每一条判断都有证据，让每一次危险操作都有门槛。</p>
+  <p>本文档中的全部评测数据均来自项目自带的合成数据集，不构成对真实生产环境准确率或安全性能的承诺。</p>
+</div>
+
+</div>
+</body>
+</html>
