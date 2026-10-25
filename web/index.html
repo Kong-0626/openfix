@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="OpenFix 工业设备检修证据链智能体，离线优先、证据可追溯、安全可拦截。">
+    <meta name="theme-color" content="#101914">
+    <title>OpenFix · 工业设备检修证据链智能体</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#workspace">跳到诊断工作台</a>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="#top" aria-label="OpenFix 首页">
+          <span class="brand-mark" aria-hidden="true">
+            <span></span><span></span><span></span>
+          </span>
+          <span>
+            <strong>OpenFix</strong>
+            <small>EVIDENCE AGENT</small>
+          </span>
+        </a>
+        <nav class="main-nav" aria-label="主导航">
+          <a href="#workspace">诊断工作台</a>
+          <a href="#orders">工单与审计</a>
+          <a href="#evaluation">可信评测</a>
+        </nav>
+        <div class="runtime-status" aria-label="系统运行状态">
+          <span class="status-dot" id="health-dot"></span>
+          <span id="health-label">正在连接</span>
+        </div>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-grid" aria-hidden="true"></div>
+        <div class="hero-content">
+          <div class="hero-copy">
+            <div class="eyebrow-row">
+              <span class="eyebrow">2026 开源行业解决方案创新赛</span>
+              <span class="eyebrow eyebrow--muted">离线可用</span>
+            </div>
+            <h1 id="hero-title">让每一次检修<br><em>都有证据链。</em></h1>
+            <p class="hero-lead">
+              把告警、设备手册、历史工单与安全规程连接起来，给出可追溯的故障假设和检修步骤。危险操作先拦截，正式执行必须经过人工审批。
+            </p>
+            <div class="hero-actions">
+              <a class="button button--primary" href="#workspace">开始一次诊断</a>
+              <a class="button button--ghost" href="#evaluation">查看可复现评测</a>
+            </div>
+          </div>
+          <aside class="hero-panel" aria-label="项目能力">
+            <div class="panel-kicker">DECISION ENVELOPE</div>
+            <ol class="pipeline">
+              <li><span>01</span><div><strong>检索取证</strong><small>报警代码 × SOP × 历史案例</small></div></li>
+              <li><span>02</span><div><strong>安全门槛</strong><small>高危条件确定性拦截</small></div></li>
+              <li><span>03</span><div><strong>人工审批</strong><small>诊断不等同于执行许可</small></div></li>
+              <li><span>04</span><div><strong>全程审计</strong><small>证据与操作留痕</small></div></li>
+            </ol>
+            <div class="panel-foot">
+              <span class="pulse-line" aria-hidden="true"></span>
+              <span>LOCAL-FIRST · NO CLOUD REQUIRED</span>
+            </div>
+          </aside>
+        </div>
+        <div class="stats-strip" id="stats-strip" aria-label="项目数据统计">
+          <div class="stat"><strong>6</strong><span>接入设备</span></div>
+          <div class="stat"><strong>8</strong><span>知识规程</span></div>
+          <div class="stat"><strong>7</strong><span>历史案例</span></div>
+          <div class="stat"><strong>12</strong><span>评测任务</span></div>
+        </div>
+      </section>
+
+      <section class="workspace-section" id="workspace">
+        <div class="section-heading">
+          <div>
+            <span class="section-index">01 / DIAGNOSE</span>
+            <h2>检修诊断工作台</h2>
+          </div>
+          <p>描述现象，系统只依据已接入证据给出建议。信息不足时会主动拒答。</p>
+        </div>
+
+        <div class="workspace-grid">
+          <section class="card input-card" aria-labelledby="input-title">
+            <div class="card-heading">
+              <div>
+                <span class="micro-label">现场输入</span>
+                <h3 id="input-title">发生了什么？</h3>
+              </div>
+              <span class="key-hint"><kbd>Ctrl</kbd> + <kbd>Enter</kbd></span>
+            </div>
+            <form id="diagnosis-form" novalidate>
+              <label class="field-label" for="asset-select">设备</label>
+              <div class="select-wrap">
+                <select id="asset-select" name="asset_id">
+                  <option value="">系统根据描述自动识别</option>
+                </select>
+              </div>
+
+              <div class="field-row">
+                <label class="field-label" for="symptom-input">故障描述</label>
+                <span class="char-count" id="char-count">0 / 1000</span>
+              </div>
+              <textarea
+                id="symptom-input"
+                name="query"
+                maxlength="1000"
+                rows="6"
+                placeholder="例如：AC-01 空压机报 E201，排气温度高，复位后十分钟又停机，现场没有焦味。"
+                aria-describedby="input-help input-error"
+              ></textarea>
+              <p class="field-help" id="input-help">建议包含设备编号、报警代码、量化读数和复位后的变化。</p>
+              <p class="field-error" id="input-error" role="alert"></p>
+
+              <div class="sample-block">
+                <span class="micro-label">快速载入示例</span>
+                <div class="sample-list" id="sample-list">
+                  <button type="button" class="sample-chip" data-sample="0">空压机高温</button>
+                  <button type="button" class="sample-chip" data-sample="1">冷却泵汽蚀</button>
+                  <button type="button" class="sample-chip" data-sample="2">伺服过载</button>
+                  <button type="button" class="sample-chip sample-chip--danger" data-sample="3">高危请求</button>
+                </div>
+              </div>
+
+              <button type="submit" class="button button--analyze" id="analyze-button">
+                <span class="button-label">生成证据诊断</span>
+                <span class="button-spinner" aria-hidden="true"></span>
+              </button>
+            </form>
+          </section>
+
+          <aside class="card trust-card" aria-labelledby="trust-title">
+            <div class="trust-topline">
+              <span class="micro-label">系统边界</span>
+              <span class="verified-badge">SAFETY FIRST</span>
+            </div>
+            <h3 id="trust-title">不是“替人修设备”的聊天机器人</h3>
+            <p>OpenFix 把模型能力限制在证据整理与方案起草；安全结论、工单批准和现场执行始终由授权人员负责。</p>
+            <ul class="trust-list">
+              <li><span class="trust-icon">证</span><div><strong>每条建议可回溯</strong><small>关联 SOP 或已验证的历史工单</small></div></li>
+              <li><span class="trust-icon">停</span><div><strong>高风险先阻断</strong><small>烟火、带压、带电、旋转部件暴露</small></div></li>
+              <li><span class="trust-icon">审</span><div><strong>工单必须人工批准</strong><small>避免把诊断结果误当成执行许可</small></div></li>
+            </ul>
+            <div class="boundary-note">演示数据，不替代厂商手册与现场安全评估。</div>
+          </aside>
+        </div>
+
+        <section class="diagnosis-result" id="diagnosis-result" aria-live="polite" hidden>
+          <div id="result-content"></div>
+        </section>
+      </section>
+
+      <section class="operations-section" id="orders">
+        <div class="section-heading">
+          <div>
+            <span class="section-index">02 / OPERATE</span>
+            <h2>工单与审计</h2>
+          </div>
+          <p>诊断可以转为待审批工单；每次创建、批准和驳回都会进入审计轨迹。</p>
+        </div>
+        <div class="operations-grid">
+          <section class="card operations-card" aria-labelledby="work-order-title">
+            <div class="card-heading">
+              <div>
+                <span class="micro-label">人工闭环</span>
+                <h3 id="work-order-title">最近工单</h3>
+              </div>
+              <button type="button" class="text-button" id="refresh-orders">刷新</button>
+            </div>
+            <div id="work-order-list" class="record-list">
+              <div class="empty-state">
+                <strong>暂无工单</strong>
+                <span>完成一次诊断后，可将结果转为待审批工单。</span>
+              </div>
+            </div>
+          </section>
+
+          <section class="card operations-card" aria-labelledby="audit-title">
+            <div class="card-heading">
+              <div>
+                <span class="micro-label">可追溯性</span>
+                <h3 id="audit-title">审计轨迹</h3>
+              </div>
+              <button type="button" class="text-button" id="refresh-audit">刷新</button>
+            </div>
+            <div id="audit-list" class="audit-list">
+              <div class="empty-state">
+                <strong>尚无审计事件</strong>
+                <span>工单创建或审批后会在这里留痕。</span>
+              </div>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section class="evaluation-section" id="evaluation">
+        <div class="section-heading">
+          <div>
+            <span class="section-index">03 / EVALUATE</span>
+            <h2>可信评测，不只展示成功案例</h2>
+          </div>
+          <p>同一套评测同时检查证据召回、安全规则和“证据不足时拒答”。</p>
+        </div>
+        <div class="evaluation-card card">
+          <div class="evaluation-summary">
+            <div class="evaluation-status" id="evaluation-status">
+              <span class="evaluation-mark">…</span>
+              <div><strong>正在运行评测</strong><small>读取 12 条本地测试任务</small></div>
+            </div>
+            <p id="evaluation-note">指标来自项目内合成演示评测集，不代表真实生产环境效果。</p>
+          </div>
+          <div class="metric-grid" id="metric-grid">
+            <div class="metric"><span>知识召回</span><strong>—</strong><small>Expected evidence in top 5</small></div>
+            <div class="metric"><span>案例召回</span><strong>—</strong><small>Historical case retrieval</small></div>
+            <div class="metric"><span>拒答准确率</span><strong>—</strong><small>Abstain when evidence is weak</small></div>
+            <div class="metric"><span>安全门命中率</span><strong>—</strong><small>Deterministic safety rules</small></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <strong>OpenFix</strong>
+        <span>工业设备检修证据链智能体</span>
+      </div>
+      <p>安全优先 · 证据可追溯 · 本地可运行</p>
+      <span>Prototype v0.1 · Apache-2.0</span>
+    </footer>
+
+    <dialog id="work-order-dialog" class="dialog">
+      <form method="dialog" class="dialog-form" id="work-order-form">
+        <div class="dialog-heading">
+          <div>
+            <span class="micro-label">HUMAN-IN-THE-LOOP</span>
+            <h2>创建待审批工单</h2>
+          </div>
+          <button type="button" class="icon-button" data-close-dialog="work-order-dialog" aria-label="关闭">×</button>
+        </div>
+        <p class="dialog-intro">工单会保留诊断编号、证据与建议步骤。提交后状态为“待审批”，不会自动下发执行。</p>
+        <label class="field-label" for="work-priority">优先级</label>
+        <select id="work-priority">
+          <option value="P1">P1 · 安全或停机风险</option>
+          <option value="P2" selected>P2 · 高影响待排查</option>
+          <option value="P3">P3 · 计划检修</option>
+          <option value="P4">P4 · 观察项</option>
+        </select>
+        <label class="field-label" for="work-actor">创建人</label>
+        <input id="work-actor" maxlength="40" autocomplete="name" placeholder="例如：王工">
+        <label class="check-row">
+          <input type="checkbox" id="work-confirm">
+          <span>我已核对诊断内容；现场执行前仍由授权人员完成安全确认。</span>
+        </label>
+        <p class="field-error" id="work-order-error" role="alert"></p>
+        <div class="dialog-actions">
+          <button type="button" class="button button--secondary" data-close-dialog="work-order-dialog">取消</button>
+          <button type="submit" class="button button--primary">创建待审批工单</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog id="decision-dialog" class="dialog">
+      <form method="dialog" class="dialog-form" id="decision-form">
+        <div class="dialog-heading">
+          <div>
+            <span class="micro-label">AUTHORIZED REVIEW</span>
+            <h2 id="decision-title">审批工单</h2>
+          </div>
+          <button type="button" class="icon-button" data-close-dialog="decision-dialog" aria-label="关闭">×</button>
+        </div>
+        <p class="dialog-intro" id="decision-intro"></p>
+        <label class="field-label" for="decision-approver">审批人</label>
+        <input id="decision-approver" maxlength="40" autocomplete="name" placeholder="填写授权审批人姓名">
+        <label class="field-label" id="decision-reason-label" for="decision-reason" hidden>驳回原因</label>
+        <textarea id="decision-reason" rows="3" maxlength="200" placeholder="说明缺失的证据或需要补充的安全条件" hidden></textarea>
+        <label class="check-row" id="decision-confirm-row">
+          <input type="checkbox" id="decision-confirm">
+          <span>我确认已完成现场安全条件核对，并批准该工单进入后续流程。</span>
+        </label>
+        <p class="field-error" id="decision-error" role="alert"></p>
+        <div class="dialog-actions">
+          <button type="button" class="button button--secondary" data-close-dialog="decision-dialog">取消</button>
+          <button type="submit" class="button button--primary" id="decision-submit">确认批准</button>
+        </div>
+      </form>
+    </dialog>
+
+    <div class="toast-region" id="toast-region" aria-live="polite" aria-atomic="true"></div>
+  </body>
+</html>

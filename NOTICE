@@ -1,0 +1,11 @@
+OpenFix
+Copyright 2026 OpenFix Contributors
+
+This product includes a bundled Python runtime:
+Python 3.12.10
+Copyright Python Software Foundation.
+Licensed under the Python Software Foundation License.
+See runtime/python312/LICENSE.txt for the full license text.
+
+The OpenFix application source is licensed under the Apache License 2.0.
+See LICENSE for the full license text.

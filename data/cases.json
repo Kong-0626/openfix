@@ -1,0 +1,93 @@
+[
+  {
+    "id": "CASE-001",
+    "title": "空压机 E201 高温停机：冷却器堵塞",
+    "asset_type": "air_compressor",
+    "alarm_codes": ["E201"],
+    "symptoms": ["排气温度高", "高温停机", "环境温度正常", "温度快速上升"],
+    "components": ["冷却器", "冷却风扇"],
+    "root_cause": "冷却器翅片积尘、排风通道受阻，设备在高负载时排气温度快速越过停机阈值。",
+    "resolution": "停机挂牌后清理冷却器翅片与风道，测试冷却风扇；复机后空载运行 20 分钟，再逐级加载并观察温度。",
+    "downtime_minutes": 68,
+    "verified": true,
+    "lessons": "优先核对温度趋势和负载关系，再检查冷却风路；单纯复位容易导致重复跳机。"
+  },
+  {
+    "id": "CASE-002",
+    "title": "空压机 E203：油滤堵塞导致油压下降",
+    "asset_type": "air_compressor",
+    "alarm_codes": ["E203"],
+    "symptoms": ["油压低", "油滤压差大", "主机声音异常", "带载跳机"],
+    "components": ["油滤", "油路系统"],
+    "root_cause": "润滑油滤芯长期未更换，油路压差升高，低负载时报警不明显，带载后油压降至保护阈值。",
+    "resolution": "停机泄压并冷却后更换油滤和润滑油，检查油泵联轴器，复机后记录油压与温度。",
+    "downtime_minutes": 95,
+    "verified": true,
+    "lessons": "机械压力表与传感器读数应交叉验证；低油压不得通过提高停机阈值规避。"
+  },
+  {
+    "id": "CASE-003",
+    "title": "冷却泵 P110：入口过滤器堵塞引发汽蚀",
+    "asset_type": "coolant_pump",
+    "alarm_codes": ["P110"],
+    "symptoms": ["出口压力低", "泵体异响", "电机电流下降", "流量不足"],
+    "components": ["入口过滤器", "泵体"],
+    "root_cause": "冷却水入口过滤器被杂质堵塞，吸入侧有效压力不足并发生汽蚀。",
+    "resolution": "隔离泵组后清理入口过滤器，确认入口阀门全开并排尽泵内空气，复机后缓开出口阀。",
+    "downtime_minutes": 52,
+    "verified": true,
+    "lessons": "出口压力低同时电流下降，更符合吸入受阻或汽蚀；电流升高则应优先排查出口受阻。"
+  },
+  {
+    "id": "CASE-004",
+    "title": "加工中心 S305：切削液浓度异常导致主轴过热",
+    "asset_type": "cnc_machine",
+    "alarm_codes": ["S305"],
+    "symptoms": ["主轴温升高", "切削液流量小", "空载温度正常", "重切削报警"],
+    "components": ["主轴", "切削液系统"],
+    "root_cause": "切削液浓度偏低且部分喷嘴堵塞，重切削时主轴冷却不足。",
+    "resolution": "停止加工，清理喷嘴并调整切削液浓度；待主轴降温后空载验证，再按低负荷恢复加工。",
+    "downtime_minutes": 46,
+    "verified": true,
+    "lessons": "必须区分重切削升温与空载快速升温；后者更需要检查轴承和传感器。"
+  },
+  {
+    "id": "CASE-005",
+    "title": "加工中心 S412：导轨润滑不足造成伺服过载",
+    "asset_type": "cnc_machine",
+    "alarm_codes": ["S412"],
+    "symptoms": ["伺服过载", "负载率升高", "轴移动卡顿", "润滑报警"],
+    "components": ["伺服驱动器", "导轨润滑系统"],
+    "root_cause": "X 轴导轨润滑油路堵塞，移动阻力升高，驱动器负载率超过保护阈值。",
+    "resolution": "程序停止并执行能量隔离，清理导轨与润滑油路，手动确认移动顺畅后低进给试运行。",
+    "downtime_minutes": 112,
+    "verified": true,
+    "lessons": "不得提高伺服过载阈值掩盖机械阻力，先隔离机械与电气因素。"
+  },
+  {
+    "id": "CASE-006",
+    "title": "输送线 C210：接缝偏斜引起反复跑偏",
+    "asset_type": "conveyor",
+    "alarm_codes": ["C210"],
+    "symptoms": ["输送带跑偏", "偏移报警", "输送带接缝", "调紧后反复"],
+    "components": ["输送带", "张紧机构", "滚筒"],
+    "root_cause": "输送带接缝偏斜，单纯调整张紧后短时间恢复但运行一段时间再次向一侧偏移。",
+    "resolution": "停机锁定后重新修整接缝，检查滚筒平行度和机架水平，低速空载观察偏移。",
+    "downtime_minutes": 78,
+    "verified": true,
+    "lessons": "反复跑偏不能只做张紧补偿，应检查输送带本体、滚筒与机架几何关系。"
+  },
+  {
+    "id": "CASE-007",
+    "title": "2号装配机器人 R118：编码器线缆松动",
+    "asset_type": "industrial_robot",
+    "alarm_codes": ["R118"],
+    "symptoms": ["关节位置偏差", "编码器报警", "动作特定位置触发", "重启恢复"],
+    "components": ["编码器", "线缆"],
+    "root_cause": "J4 轴编码器线缆在拖链弯折区间歇性接触不良，特定姿态下触发位置偏差。",
+    "resolution": "机器人下电并执行能量隔离，检查拖链与编码器线缆，固定磨损段后进行低速全行程验证。",
+    "downtime_minutes": 140,
+    "verified": true,
+    "lessons": "间歇性位置报警应结合触发姿态和线缆弯折历史，不应只复位控制器。"
+  }
+]

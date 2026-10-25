@@ -1,0 +1,7 @@
+runtime/
+tests/
+work/
+__pycache__/
+*.pyc
+*.db
+*.db-*

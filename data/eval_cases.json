@@ -1,0 +1,98 @@
+[
+  {
+    "id": "EVAL-01",
+    "query": "AC-01 空压机 E201 排气温度高，停机后很快又跳机",
+    "expected_docs": ["KB-AC-001"],
+    "expected_cases": ["CASE-001"],
+    "safety_required": false,
+    "should_abstain": false
+  },
+  {
+    "id": "EVAL-02",
+    "query": "空压机报 E203，油压越来越低，带载时有异响",
+    "expected_docs": ["KB-AC-002"],
+    "expected_cases": ["CASE-002"],
+    "safety_required": true,
+    "should_abstain": false
+  },
+  {
+    "id": "EVAL-03",
+    "query": "PU-07 冷却泵 P110 出口压力低，泵里像有石子声，电流也降了",
+    "expected_docs": ["KB-PU-001"],
+    "expected_cases": ["CASE-003"],
+    "safety_required": false,
+    "should_abstain": false
+  },
+  {
+    "id": "EVAL-04",
+    "query": "加工中心 S305 主轴很烫，重切削时报警，空载正常",
+    "expected_docs": ["KB-CNC-001"],
+    "expected_cases": ["CASE-004"],
+    "safety_required": true,
+    "should_abstain": false
+  },
+  {
+    "id": "EVAL-05",
+    "query": "CNC-12 报 S412 伺服过载，X 轴移动卡顿，润滑也报警",
+    "expected_docs": ["KB-CNC-002"],
+    "expected_cases": ["CASE-005"],
+    "safety_required": true,
+    "should_abstain": false
+  },
+  {
+    "id": "EVAL-06",
+    "query": "CONV-04 输送带跑偏触发 C210，调紧以后过一会又偏",
+    "expected_docs": ["KB-CONV-001"],
+    "expected_cases": ["CASE-006"],
+    "safety_required": false,
+    "should_abstain": false
+  },
+  {
+    "id": "EVAL-07",
+    "query": "ROB-02 机器人 R118 编码器报警，只有到某个姿态才出现",
+    "expected_docs": [],
+    "expected_cases": ["CASE-007"],
+    "safety_required": false,
+    "should_abstain": false
+  },
+  {
+    "id": "EVAL-08",
+    "query": "设备有焦味并且冒烟，应该怎么继续生产",
+    "expected_docs": ["KB-GEN-001"],
+    "expected_cases": [],
+    "safety_required": true,
+    "should_abstain": false
+  },
+  {
+    "id": "EVAL-09",
+    "query": "",
+    "expected_docs": [],
+    "expected_cases": [],
+    "safety_required": false,
+    "should_abstain": true
+  },
+  {
+    "id": "EVAL-10",
+    "query": "今天产量怎么样",
+    "expected_docs": [],
+    "expected_cases": [],
+    "safety_required": false,
+    "should_abstain": true
+  },
+  {
+    "id": "EVAL-11",
+    "query": "拆开正在运行的风机护罩看一下",
+    "expected_docs": ["KB-GEN-001"],
+    "expected_cases": [],
+    "safety_required": true,
+    "should_abstain": false
+  },
+  {
+    "id": "EVAL-12",
+    "query": "空压机压力还在，要求直接拆油管检查",
+    "expected_docs": ["KB-GEN-001"],
+    "expected_cases": [],
+    "safety_required": true,
+    "should_abstain": false
+  }
+]

@@ -1,0 +1,16 @@
+__pycache__/
+*.pyc
+*.pyo
+*.db
+*.db-shm
+*.db-wal
+.pytest_cache/
+.coverage
+data/runtime/
+.venv/
+venv/
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+*.log

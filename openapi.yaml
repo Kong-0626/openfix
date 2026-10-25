@@ -1,0 +1,155 @@
+openapi: 3.1.0
+info:
+  title: OpenFix API
+  version: 0.1.0
+  description: |
+    OpenFix 是工业设备检修证据链智能体。此 API 用于演示诊断、工单审批和审计闭环。
+    所有设备与故障数据均为合成演示数据，应答不构成现场作业许可。
+servers:
+  - url: http://127.0.0.1:8765
+paths:
+  /api/health:
+    get:
+      summary: 健康检查
+      responses:
+        "200":
+          description: 服务正常
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok: { type: boolean, const: true }
+                  data:
+                    type: object
+                    properties:
+                      status: { type: string, const: ok }
+                      service: { type: string }
+                      version: { type: string }
+  /api/overview:
+    get:
+      summary: 获取设备、统计和示例问题
+      responses:
+        "200":
+          description: 项目概览
+  /api/diagnose:
+    post:
+      summary: 生成证据诊断
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [query]
+              properties:
+                query:
+                  type: string
+                  maxLength: 1000
+                asset_id:
+                  type: [string, "null"]
+                  maxLength: 40
+      responses:
+        "200":
+          description: 诊断结果或主动拒答
+        "422":
+          description: 参数校验失败
+  /api/work-orders:
+    get:
+      summary: 获取最近工单
+      parameters:
+        - name: limit
+          in: query
+          schema: { type: integer, minimum: 1, maximum: 100, default: 20 }
+      responses:
+        "200":
+          description: 工单列表
+    post:
+      summary: 创建待审批工单
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [diagnosis_id, title, summary, actor]
+              properties:
+                diagnosis_id: { type: string, maxLength: 80 }
+                title: { type: string, maxLength: 120 }
+                summary: { type: string, maxLength: 500 }
+                asset_id: { type: [string, "null"], maxLength: 40 }
+                priority: { type: string, enum: [P1, P2, P3, P4], default: P2 }
+                actions:
+                  type: array
+                  maxItems: 12
+                  items: { type: object }
+                evidence_ids:
+                  type: array
+                  maxItems: 10
+                  items: { type: string, maxLength: 60 }
+                actor: { type: string, maxLength: 40 }
+      responses:
+        "201":
+          description: 待审批工单已创建
+        "422":
+          description: 参数校验失败
+  /api/work-orders/{work_order_id}/approve:
+    post:
+      summary: 批准工单
+      parameters:
+        - name: work_order_id
+          in: path
+          required: true
+          schema: { type: string, pattern: "^WO-\\d{8}-[A-F0-9]{6}$" }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [approver, confirmation]
+              properties:
+                approver: { type: string, minLength: 2, maxLength: 40 }
+                confirmation: { type: string, const: 确认安全条件并批准工单 }
+      responses:
+        "200":
+          description: 工单已批准
+        "422":
+          description: 状态不可审批或参数错误
+  /api/work-orders/{work_order_id}/reject:
+    post:
+      summary: 驳回工单
+      parameters:
+        - name: work_order_id
+          in: path
+          required: true
+          schema: { type: string, pattern: "^WO-\\d{8}-[A-F0-9]{6}$" }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [approver, reason]
+              properties:
+                approver: { type: string, minLength: 2, maxLength: 40 }
+                reason: { type: string, minLength: 1, maxLength: 200 }
+      responses:
+        "200":
+          description: 工单已驳回
+  /api/audit:
+    get:
+      summary: 获取审计事件
+      parameters:
+        - name: limit
+          in: query
+          schema: { type: integer, minimum: 1, maximum: 100, default: 30 }
+      responses:
+        "200":
+          description: 审计记录
+  /api/evaluation:
+    get:
+      summary: 运行并返回可复现评测
+      responses:
+        "200":
+          description: 评测报告

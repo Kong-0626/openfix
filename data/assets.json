@@ -1,0 +1,56 @@
+[
+  {
+    "id": "AC-01",
+    "name": "1号螺杆空压机",
+    "asset_type": "air_compressor",
+    "line": "冲压一线",
+    "criticality": "A",
+    "components": ["主机", "电机", "冷却器", "油路系统", "排气温度传感器"],
+    "aliases": ["空压机", "气压站", "AC-01"]
+  },
+  {
+    "id": "AC-02",
+    "name": "2号螺杆空压机",
+    "asset_type": "air_compressor",
+    "line": "装配二线",
+    "criticality": "A",
+    "components": ["主机", "电机", "冷却器", "油路系统", "压力传感器"],
+    "aliases": ["空压机", "气压站", "AC-02"]
+  },
+  {
+    "id": "PU-07",
+    "name": "7号循环冷却水泵",
+    "asset_type": "coolant_pump",
+    "line": "公用动力站",
+    "criticality": "A",
+    "components": ["泵体", "机械密封", "入口过滤器", "轴承", "出口压力传感器"],
+    "aliases": ["冷却泵", "循环泵", "PU-07"]
+  },
+  {
+    "id": "CNC-12",
+    "name": "12号立式加工中心",
+    "asset_type": "cnc_machine",
+    "line": "精密加工线",
+    "criticality": "B",
+    "components": ["主轴", "伺服驱动器", "切削液系统", "导轨润滑系统", "编码器"],
+    "aliases": ["加工中心", "数控机床", "CNC-12"]
+  },
+  {
+    "id": "CONV-04",
+    "name": "4号成品输送线",
+    "asset_type": "conveyor",
+    "line": "包装线",
+    "criticality": "B",
+    "components": ["驱动电机", "减速机", "输送带", "张紧机构", "光电传感器"],
+    "aliases": ["输送线", "传送带", "CONV-04"]
+  },
+  {
+    "id": "ROB-02",
+    "name": "2号装配机器人",
+    "asset_type": "industrial_robot",
+    "line": "装配二线",
+    "criticality": "A",
+    "components": ["六轴本体", "伺服驱动器", "减速机", "编码器", "安全围栏"],
+    "aliases": ["机器人", "机械臂", "ROB-02"]
+  }
+]
