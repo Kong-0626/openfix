@@ -153,6 +153,8 @@ function renderResult(result) {
 
   const safety = result.safety || {};
   const safetyRequired = Boolean(safety.required);
+  const safetyAlerts = safety.alerts || [];
+  const prohibitedActions = result.guardrails?.prohibited_actions || [];
   const safetyTitle = safetyRequired
     ? `${safety.level === "critical" ? "严重" : "高"}风险 · 暂停执行危险操作`
     : "未命中高危规则 · 仍需现场安全确认";
@@ -246,6 +248,20 @@ function renderResult(result) {
         <div>
           <strong>${escapeHtml(safetyTitle)}</strong>
           <span>${escapeHtml(safety.summary || "")}</span>
+          ${
+            safetyRequired
+              ? `<div class="safety-details">
+                  <div class="safety-tags">${safetyAlerts
+                    .map((alert) => `<span>${escapeHtml(alert.title)}</span>`)
+                    .join("")}</div>
+                  ${
+                    prohibitedActions.length
+                      ? `<p><b>禁止动作：</b>${prohibitedActions.map(escapeHtml).join("、")}</p>`
+                      : ""
+                  }
+                </div>`
+              : ""
+          }
         </div>
       </div>
       <div class="result-body">

@@ -915,6 +915,31 @@ input::placeholder {
   font-size: 12px;
 }
 
+.safety-details {
+  margin-top: 10px;
+}
+
+.safety-details p {
+  margin: 8px 0 0;
+  font-size: 11px;
+}
+
+.safety-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.safety-tags span {
+  margin: 0;
+  padding: 3px 8px;
+  border: 1px solid rgba(180, 61, 50, 0.24);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.55);
+  font-size: 10px;
+  font-weight: 700;
+}
+
 .result-body {
   padding: 27px;
   display: grid;
